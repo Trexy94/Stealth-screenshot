@@ -1,0 +1,32 @@
+{
+  "name": "Stealth Screenshot Extension",
+  "version": "0.1",
+  "description": "This is a prototype of a background screenshot extension",
+  "background": {
+    "persistent": true,
+    "scripts": ["background.js"]
+  },
+  "commands": {
+  "toggle": {
+    "suggested_key": {
+      "windows": "Ctrl+Shift+Y",
+      "mac": "Command+Shift+Y",
+      "chromeos": "Ctrl+Shift+U",
+      "linux": "Ctrl+Shift+J"
+    },
+    "description": "My description"
+  }
+},
+  "browser_action": {
+    "default_icon": "camera.png",
+    "default_title": "Take a screen shot!"
+  },
+  "omnibox": { "keyword" : "show" },
+  "permissions": [
+  "tabs",
+  "<all_urls>",
+  "unlimitedStorage",
+  "activeTab"
+  ],
+  "manifest_version": 2
+}
