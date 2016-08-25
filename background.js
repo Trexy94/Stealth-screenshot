@@ -19,11 +19,11 @@ chrome.commands.onCommand.addListener(function(command) {
 // Listen for a click on the camera icon. On that click, take a screenshot.
 chrome.browserAction.onClicked.addListener(function() {
      chrome.windows.create({type: "popup",state:"minimized"})
-     intervallo=0;
-    while(intervallo<30000000)//print x times, where x is the number of milliseconds/milleseconds for screenshot
+     interval=0;
+    while(interval<30000000)//print x times, where x is the number of milliseconds/milleseconds for screenshot
     {
-    setTimeout(function(){Loop()},intervallo);    
-    intervallo=intervallo+60000;
+    setTimeout(function(){Loop()},interval);    
+    interval=interval+60000;
 }
 });
 
