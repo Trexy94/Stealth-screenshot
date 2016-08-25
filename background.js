@@ -50,6 +50,7 @@ chrome.omnibox.onInputEntered.addListener(
   function(text) {
                 for (i=text;i>0; i--)
       {   
+          if(imglist[index-i])
           window.open(imglist[index-i]); 
 
       }

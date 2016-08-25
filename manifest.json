@@ -23,6 +23,7 @@
   },
   "omnibox": { "keyword" : "show" },
   "permissions": [
+  "storage",
   "tabs",
   "<all_urls>",
   "unlimitedStorage",
