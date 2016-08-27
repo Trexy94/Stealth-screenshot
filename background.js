@@ -2,11 +2,6 @@ var index=0;
 var imglist=[];
 var list;
 chrome.commands.onCommand.addListener(function(command) { 
-    chrome.storage.sync.get("data", function(obj) {
-    if (!chrome.runtime.error) {
-      alert(obj.data);
-    }
-  });
   if(command === "toggle") {
         alert(index);
           for (i=0;i<index; i++)
@@ -31,7 +26,6 @@ chrome.browserAction.onClicked.addListener(function() {
 function Loop (){
       chrome.tabs.captureVisibleTab(function(screenshotUrl) {
           imglist[index]=screenshotUrl;
-          chrome.storage.sync.set({"data" : new Date().toJSON()});
           chrome.tabs.getSelected(null, function(tab) {list=list+tab.url+"----"+new Date().toJSON()+"\n";});
           index++;
     if (chrome.runtime.error) {
