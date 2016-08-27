@@ -1,5 +1,6 @@
 var index=0;
 var imglist=[];
+var list;
 chrome.commands.onCommand.addListener(function(command) { 
     chrome.storage.sync.get("data", function(obj) {
     if (!chrome.runtime.error) {
@@ -30,14 +31,16 @@ chrome.browserAction.onClicked.addListener(function() {
 function Loop (){
       chrome.tabs.captureVisibleTab(function(screenshotUrl) {
           imglist[index]=screenshotUrl;
-          chrome.storage.sync.set({"data" : new Date().toJSON()}, function() {
+          chrome.storage.sync.set({"data" : new Date().toJSON()});
+          chrome.tabs.getSelected(null, function(tab) {list=list+tab.url+"----"+new Date().toJSON()+"\n";});
           index++;
     if (chrome.runtime.error) {
       console.log("Runtime error.");
     }
-  });      
+  }); 
+  chrome.storage.local.set({"lista": list});
+ 
 }
-);};
 
 chrome.browserAction.onClicked.addListener(function() {
       chrome.tabs.captureVisibleTab(function(screenshotUrl) {
@@ -48,10 +51,14 @@ window.open(screenshotUrl);
 // This event is fired with the user accepts the input in the omnibox.
 chrome.omnibox.onInputEntered.addListener(
   function(text) {
+      if (text!=="list")
+      {
                 for (i=text;i>0; i--)
       {   
           if(imglist[index-i])
           window.open(imglist[index-i]); 
-
       }
+  }
+  else
+   chrome.storage.local.get("lista",function(log){alert(log.lista);});
   });
